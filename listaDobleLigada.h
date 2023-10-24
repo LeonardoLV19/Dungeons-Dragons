@@ -19,13 +19,13 @@ public:
 };
 
 template <typename T>
-class Lista {
+class ListaDL {
 private:
     NodoLista<T>* head;
     NodoLista<T>* tail;
 
 public:
-    Lista() {
+    ListaDL() {
         head = nullptr;
         tail = nullptr;
     }

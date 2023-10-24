@@ -5,10 +5,17 @@
 using namespace std;
 
 int main() {
-    Catalogo catalog("monsters.csv");
-    vector<vector<string>> catalogoMonstruos;
+    // Crear un objeto Catalogo con el nombre del archivo CSV
+    Catalogo catalogo("monsters.csv");
 
-    catalog.readCatalogo(catalogoMonstruos);
-    catalog.printCatalogo(catalogoMonstruos);
+    // Crear una lista doblemente ligada para almacenar los monstruos
+    ListaDL<monstruo> catalogoMonstruos;
+
+    // Llenar el catálogo a partir del archivo CSV
+    catalogo.crearCatalogo(catalogoMonstruos);
+
+    // Imprimir el catálogo de monstruos
+    catalogoMonstruos.imprimir();
+
     return 0;
 }

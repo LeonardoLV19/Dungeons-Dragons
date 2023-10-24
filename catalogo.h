@@ -18,12 +18,13 @@ using namespace std;
 
 class Catalogo {
 private:
-    const string   filename;
-    char  delimiter;
+    const string filename;
+    char delimiter;
+
 public:
     Catalogo(const string& filename, char delimiter = ',') : filename(filename), delimiter(delimiter) {}
 
-    bool readCatalogo(vector<vector<string>>& data) {
+    bool crearCatalogo(ListaDL<monstruo>& catalogoMonstruos) {
         ifstream file(filename);
         string line;
 
@@ -32,29 +33,36 @@ public:
             return false;
         }
 
-        while(getline(file, line)){
-            vector<string> row;
+        // Leer la primera línea (encabezados) y descartarla
+        getline(file, line);
+
+        while (getline(file, line)) {
             stringstream ss(line);
             string cell;
+            vector<string> row;
 
-            while (getline(ss, cell, delimiter)){
+            while (getline(ss, cell, delimiter)) {
                 row.push_back(cell);
-
             }
-            data.push_back(row);
+
+            if (row.size() >= 7) {
+                // En el constructor asigno cada elemento con el atributo correspondiente
+                monstruo nuevoMonstruo(
+                        row[0],                    // Nombre
+                        stof(row[1]),              // CR       stof (para números en punto flotante)
+                        row[2],                    // Tipo
+                        row[3],                    // Tamaño
+                        stoi(row[4]),              // AC       stoi (para números enteros)
+                        stoi(row[5]),              // HP
+                        row[6]                     // Alineación
+                );
+                catalogoMonstruos.insertarInicio(nuevoMonstruo);
+            }
         }
+
         file.close();
 
         return true;
-    }
-
-    void printCatalogo(const vector<vector<string>>& data) {
-        for (const vector<string>& row : data) {
-            for (const string& cell : row) {
-                cout << cell << ' ';
-            }
-            cout << endl;
-        }
     }
 };
 
