@@ -21,15 +21,18 @@ public:
              const std::string& tamano, int armorClass, int vida, const std::string& alineacion)
             : name(nombre), cr(challengingRating), type(tipo), size(tamano), ac(armorClass), hp(vida), align(alineacion) {}
 
+    //Constructor por defecto
+    monstruo() : cr(0), ac(0), hp(0) {}
+
     // Sobrecarga del operador de inserción para imprimir objetos monstruo
     friend std::ostream& operator<<(std::ostream& os, const monstruo& m) {
-        os << "Nombre: " << m.name << "\n";
+        os << "Name: " << m.name << "\n";
         os << "CR: " << m.cr << "\n";
-        os << "Tipo: " << m.type << "\n";
-        os << "Tamaño: " << m.size << "\n";
+        os << "Type: " << m.type << "\n";
+        os << "Size: " << m.size << "\n";
         os << "AC: " << m.ac << "\n";
         os << "HP: " << m.hp << "\n";
-        os << "Alineación: " << m.align << "\n";
+        os << "Align: " << m.align << "\n";
         return os;
     }
 };

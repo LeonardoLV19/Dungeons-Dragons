@@ -86,6 +86,22 @@ public:
         return nullptr;
     }
 
+    NodoLista<T>* obtenerNodo(int posicion) {
+        if (posicion < 0) {
+            return nullptr;
+        }
+
+        NodoLista<T>* nodoActual = head;
+        int contador = 0;
+
+        while (nodoActual && contador < posicion) {
+            nodoActual = nodoActual->next;
+            contador++;
+        }
+
+        return nodoActual;
+    }
+
     void destruirLista() {
         NodoLista<T>* NodoActual = head;
 
@@ -171,6 +187,45 @@ public:
 
         return true;
     }
+
+    bool isEmpty() {
+        return head == nullptr;
+    }
+
+    bool tamanioDeLista(){
+        int tamanio = 0;
+        NodoLista<T>* nodoActual = head;
+
+        while (nodoActual) {
+            tamanio++;
+            nodoActual = nodoActual->next;
+        }
+
+        return tamanio;
+    }
+
+    NodoLista<T>* obtenerNodoIndice(int indice) {
+        if (indice < 0 || indice >= tamanioDeLista()) {
+            // Índice fuera de rango
+            return nullptr;
+        }
+
+        NodoLista<T>* nodoActual = head;
+        int i = 0;
+
+        while (nodoActual != nullptr) {
+            if (i == indice) {
+                // Hemos encontrado el nodo correspondiente al índice
+                return nodoActual;
+            }
+
+            nodoActual = nodoActual->next;
+            i++;
+        }
+
+        return nullptr; // No se encontró el nodo correspondiente al índice
+    }
+
 };
 
 

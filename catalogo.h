@@ -10,6 +10,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "listaDobleLigada.h"
 #include "monstruo.h"
 
@@ -64,6 +66,22 @@ public:
 
         return true;
     }
+
+    NodoLista<monstruo>* obtenerNodoMonstruoAleatorio(ListaDL<monstruo>& catalogoMonstruos) {
+        if (catalogoMonstruos.isEmpty()) {
+            // El catálogo está vacío, no se puede seleccionar un monstruo aleatorio
+            return nullptr;
+        }
+
+        // Genera un número aleatorio entre 0 y el tamaño del catálogo - 1
+        int indiceAleatorio = rand() % catalogoMonstruos.tamanioDeLista();
+
+        // Utiliza el índice aleatorio para seleccionar un nodo del catálogo
+        NodoLista<monstruo>* nodoAleatorio = catalogoMonstruos.obtenerNodoIndice(indiceAleatorio);
+
+        return nodoAleatorio;
+    }
+
 };
 
 
