@@ -226,6 +226,11 @@ public:
         return nullptr; // No se encontró el nodo correspondiente al índice
     }
 
+    NodoLista<T>* getHead() {
+        return head;
+    }
+
+
 };
 
 

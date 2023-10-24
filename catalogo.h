@@ -24,6 +24,7 @@ private:
     char delimiter;
 
 public:
+    //ListaDL<monstruo> catalogoMonstruos;
     Catalogo(const string& filename, char delimiter = ',') : filename(filename), delimiter(delimiter) {}
 
     bool crearCatalogo(ListaDL<monstruo>& catalogoMonstruos) {
@@ -73,7 +74,7 @@ public:
             return nullptr;
         }
 
-        // Genera un número aleatorio entre 0 y el tamaño del catálogo - 1
+        // Genera un número aleatorio
         int indiceAleatorio = rand() % catalogoMonstruos.tamanioDeLista();
 
         // Utiliza el índice aleatorio para seleccionar un nodo del catálogo
@@ -85,5 +86,5 @@ public:
 };
 
 
-//stringstream
+
 #endif //PROYECTOFINALESTRUCTURADATOS_CATALOGO_H
