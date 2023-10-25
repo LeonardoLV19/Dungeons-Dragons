@@ -8,19 +8,20 @@
 using namespace std;
 
 int main() {
-    // Crear un objeto Catalogo con el nombre del archivo CSV
+    // Crear un objeto Catalogo
     Catalogo catalogo("monsters.csv");
+
     // Crear una lista doblemente ligada para almacenar los monstruos
     ListaDL<monstruo> catalogoMonstruos;
 
-    // Llenar el catálogo a partir del archivo CSV
+    // Llenar el catálogo
     if(catalogo.crearCatalogo(catalogoMonstruos) == true){
         cout<<"cargado correctamente"<<endl;
     }
 
     Calabozo calabozo(catalogo, catalogoMonstruos);
 
-    // Imprimir la información de los cuartos en el calabozo
+    // Imprimir los cuartos
     calabozo.imprimirCuartos();
 
 

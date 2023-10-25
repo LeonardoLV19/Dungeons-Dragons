@@ -24,7 +24,6 @@ private:
     char delimiter;
 
 public:
-    //ListaDL<monstruo> catalogoMonstruos;
     Catalogo(const string& filename, char delimiter = ',') : filename(filename), delimiter(delimiter) {}
 
     bool crearCatalogo(ListaDL<monstruo>& catalogoMonstruos) {
@@ -70,7 +69,7 @@ public:
 
     NodoLista<monstruo>* obtenerNodoMonstruoAleatorio(ListaDL<monstruo>& catalogoMonstruos) {
         if (catalogoMonstruos.isEmpty()) {
-            // El catálogo está vacío, no se puede seleccionar un monstruo aleatorio
+            // El catálogo está vacío
             return nullptr;
         }
 

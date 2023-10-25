@@ -45,21 +45,28 @@ private:
 
 public:
     Calabozo(Catalogo& catalogo, ListaDL<monstruo> catalogoMonstruos) {
-        // Inicializar la semilla para generar números aleatorios
+
         srand(static_cast<unsigned>(time(nullptr)));
 
-        // Llena el calabozo con cuartos, cada uno con un monstruo aleatorio del catálogo
+        // Llenar el calabozo con cuartos
         for (int i = 0; i < 20; i++) {
             NodoLista<monstruo>* nodoMonstruo = catalogo.obtenerNodoMonstruoAleatorio(catalogoMonstruos);
             if (nodoMonstruo) {
                 Cuarto cuarto(nodoMonstruo->info);  // Crea un cuarto con el monstruo aleatorio
+                cuarto.establecerMonstruo(nodoMonstruo->info);
                 cuartos.insertarInicio(cuarto);
             }
         }
     }
 
     void imprimirCuartos() {
-        cuartos.imprimir();
+        int numeroCuarto = 1;
+        NodoLista<Cuarto>* nodoCuarto = cuartos.getHead();
+        while (nodoCuarto) {
+            cout << "Cuarto " << numeroCuarto << ": " << nodoCuarto->info.obtenerMonstruo().name << endl;
+            numeroCuarto++;
+            nodoCuarto = nodoCuarto->next;
+        }
     }
 };
 
