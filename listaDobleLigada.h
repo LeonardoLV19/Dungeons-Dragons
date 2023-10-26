@@ -192,7 +192,7 @@ public:
         return head == nullptr;
     }
 
-    bool tamanioDeLista(){
+    int tamanioDeLista(){
         int tamanio = 0;
         NodoLista<T>* nodoActual = head;
 
