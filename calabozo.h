@@ -11,58 +11,66 @@
 #include <ctime>
 #include "listaDobleLigada.h"
 #include "monstruo.h"
-#include "Catalogo.h"  // Asegúrate de incluir tu clase Catalogo
+#include "Catalogo.h" // Asegúrate de incluir tu clase Catalogo
 
-class Cuarto {
+class Cuarto
+{
 private:
-
     monstruo contenido;
 
 public:
-    Cuarto(const monstruo& m) : contenido(m) {}
+    Cuarto(const monstruo &m) : contenido(m) {}
 
-    monstruo obtenerMonstruo() const {
+    monstruo obtenerMonstruo() const
+    {
         return contenido;
     }
 
-    void establecerMonstruo(const monstruo& m) {
+    void establecerMonstruo(const monstruo &m)
+    {
         contenido = m;
     }
 
-    void imprimirMonstruo() const {
+    void imprimirMonstruo() const
+    {
         std::cout << contenido;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Cuarto& cuarto) {
+    friend std::ostream &operator<<(std::ostream &os, const Cuarto &cuarto)
+    {
         os << cuarto.contenido;
         return os;
     }
 };
 
-class Calabozo {
+class Calabozo
+{
 private:
     ListaDL<Cuarto> cuartos;
 
 public:
-    Calabozo(Catalogo& catalogo, ListaDL<monstruo> catalogoMonstruos) {
-
+    Calabozo(Catalogo &catalogo)
+    {
         srand(static_cast<unsigned>(time(nullptr)));
 
         // Llenar el calabozo con cuartos
-        for (int i = 0; i < 20; i++) {
-            NodoLista<monstruo>* nodoMonstruo = catalogo.obtenerNodoMonstruoAleatorio(catalogoMonstruos);
-            if (nodoMonstruo) {
-                Cuarto cuarto(nodoMonstruo->info);  // Crea un cuarto con el monstruo aleatorio
-                cuarto.establecerMonstruo(nodoMonstruo->info);
+        for (int i = 0; i < 20; i++)
+        {
+            NodoLista<monstruo> *nodoMonstruo = catalogo.obtenerNodoMonstruoAleatorio();
+            if (nodoMonstruo)
+            {
+                Cuarto cuarto(nodoMonstruo->info); // Crea un cuarto con el monstruo aleatorio
                 cuartos.insertarInicio(cuarto);
             }
         }
     }
 
-    void imprimirCuartos() {
+    void imprimirCuartos()
+    {
         int numeroCuarto = 1;
-        NodoLista<Cuarto>* nodoCuarto = cuartos.getHead();
-        while (nodoCuarto) {
+        NodoLista<Cuarto> *nodoCuarto = cuartos.getHead();
+        while (nodoCuarto)
+        {
             cout << "Cuarto " << numeroCuarto << ": " << nodoCuarto->info.obtenerMonstruo().name << endl;
             numeroCuarto++;
             nodoCuarto = nodoCuarto->next;
@@ -70,7 +78,4 @@ public:
     }
 };
 
-
-
-
-#endif //PROYECTOFINALESTRUCTURADATOS_CALABOZO_H
+#endif // PROYECTOFINALESTRUCTURADATOS_CALABOZO_H

@@ -20,13 +20,20 @@ using namespace std;
 
 class Catalogo {
 private:
+    ListaDL<monstruo> catalogoMonstruos;
     const string filename;
     char delimiter;
 
 public:
-    Catalogo(const string& filename, char delimiter = ',') : filename(filename), delimiter(delimiter) {}
+    Catalogo(const string& filename, char delimiter = ',') : filename(filename), delimiter(delimiter) {
+        if (crearCatalogo()) {
+            cout << "Catálogo cargado correctamente" << endl;
+        } else {
+            cerr << "Error al cargar el catálogo" << endl;
+        }
+    }
 
-    bool crearCatalogo(ListaDL<monstruo>& catalogoMonstruos) {
+    bool crearCatalogo() {
         ifstream file(filename);
         string line;
 
@@ -67,7 +74,7 @@ public:
         return true;
     }
 
-    NodoLista<monstruo>* obtenerNodoMonstruoAleatorio(ListaDL<monstruo>& catalogoMonstruos) {
+    NodoLista<monstruo>* obtenerNodoMonstruoAleatorio() {
         if (catalogoMonstruos.isEmpty()) {
             // El catálogo está vacío
             return nullptr;

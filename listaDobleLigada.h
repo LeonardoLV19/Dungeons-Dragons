@@ -30,6 +30,11 @@ public:
         tail = nullptr;
     }
 
+    ~ListaDL() {
+        destruirLista();
+    }
+
+
     bool insertarInicio(T dato) {
         NodoLista<T>* nuevoNodo = new(nothrow) NodoLista<T>(dato);
 
